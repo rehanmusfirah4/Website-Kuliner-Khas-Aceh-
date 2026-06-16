@@ -1,0 +1,219 @@
+
+    /* ===== VARIABEL GLOBAL ===== */
+    :root {
+      --coklat-tua:  #3E1F00;
+      --oranye:      #E07B2A;
+      --oranye-muda: #F5A623;
+      --krem:        #FDF6EC;
+      --teks-gelap:  #1A1A1A;
+      --teks-abu:    #666666;
+      --putih:       #FFFFFF;
+      --font-judul:  'Playfair Display', serif;
+      --font-isi:    'Nunito', sans-serif;
+      --shadow-card: 0 4px 20px rgba(0,0,0,0.10);
+      --radius:      12px;
+      --transisi:    0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-isi); color: var(--teks-gelap); }
+
+    /* ===== NAVBAR ===== */
+    .navbar { background: var(--putih); box-shadow: 0 2px 15px rgba(0,0,0,0.08); padding: 14px 0; position: sticky; top: 0; z-index: 1000; }
+    .navbar-brand .brand-name { font-family: var(--font-judul); font-size: 1.4rem; color: var(--coklat-tua); font-weight: 800; }
+    .navbar-brand .brand-sub  { font-size: 0.7rem; color: var(--teks-abu); display: block; line-height: 1; }
+    .logo-icon { font-size: 1.8rem; color: var(--oranye); margin-right: 8px; }
+    .nav-link { color: var(--teks-gelap) !important; font-weight: 600; font-size: 0.95rem; padding: 6px 16px !important; transition: color var(--transisi); }
+    .nav-link:hover, .nav-link.active { color: var(--oranye) !important; }
+    .nav-link.active { border-bottom: 2px solid var(--oranye); }
+
+    /* ===== HEADER KONTAK ===== */
+    .page-header {
+      background: var(--krem);
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: var(--font-judul);
+      font-size: 2.4rem;
+    }
+    /* Garis dekorasi di bawah judul */
+    .page-header h1::after {
+      content: '';
+      display: block;
+      width: 60px; height: 3px;
+      background: var(--oranye);
+      margin: 10px auto 0;
+    }
+
+    /* ===== AREA KONTEN KONTAK ===== */
+    .section-kontak { padding: 60px 0; }
+
+    /* ===== GAMBAR DI ATAS FORM (sesuai wireframe) ===== */
+    .kontak-img {
+      width: 100%;
+      border-radius: var(--radius);
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ===== FORM "KIRIM PESAN" ===== */
+    /* Kartu putih pembungkus form */
+    .form-card {
+      background: var(--putih);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+    }
+
+    .form-card h4 {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--teks-gelap);
+    }
+
+    /* Label input form */
+    .form-label {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--teks-abu);
+      text-transform: uppercase;    /* Huruf kapital semua */
+      letter-spacing: 0.04em;
+    }
+
+    /* Input, textarea default Bootstrap di-override */
+    .form-control {
+      border: 1.5px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: var(--font-isi);
+      font-size: 0.92rem;
+      transition: border-color var(--transisi), box-shadow var(--transisi);
+    }
+
+    /* Efek focus: border dan glow berwarna oranye */
+    .form-control:focus {
+      border-color: var(--oranye);
+      box-shadow: 0 0 0 3px rgba(224,123,42,0.15); /* Glow oranye transparan */
+      outline: none;
+    }
+
+    /* Textarea tidak bisa di-resize (menjaga layout rapi) */
+    textarea.form-control { resize: none; }
+
+    /* Tombol Kirim Pesan */
+    .btn-kirim {
+      background: var(--oranye);
+      color: var(--putih);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 50px;        /* Bentuk pill */
+      font-weight: 700;
+      font-size: 0.95rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background var(--transisi), transform var(--transisi);
+    }
+    .btn-kirim:hover {
+      background: var(--coklat-tua);
+      transform: translateY(-2px);
+    }
+
+    /* ===== PESAN SUKSES (muncul setelah form dikirim) ===== */
+    .alert-sukses {
+      display: none; /* Tersembunyi secara default */
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== SIDEBAR INFO KONTAK ===== */
+    .info-kontak {
+      background: var(--putih);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+    }
+
+    .info-kontak h4 {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    /* Tiap baris info (ikon + teks) */
+    .info-item {
+      display: flex;
+      align-items: flex-start; /* Jika teks panjang, ikon tetap di atas */
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Kontainer ikon bulat oranye */
+    .info-item .icon-box {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      background: var(--krem);     /* Latar krem */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--oranye);
+      font-size: 1rem;
+    }
+
+    .info-item .info-label {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--teks-abu);
+      margin-bottom: 2px;
+    }
+
+    .info-item .info-value {
+      font-size: 0.95rem;
+      color: var(--teks-gelap);
+    }
+
+    /* ===== SOSIAL MEDIA DI INFO KONTAK ===== */
+    .sosmed-kontak { margin-top: 24px; }
+    .sosmed-kontak p { font-weight: 700; font-size: 0.88rem; color: var(--teks-abu); margin-bottom: 10px; }
+    .sosmed-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--teks-gelap);
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      transition: color var(--transisi);
+    }
+    .sosmed-link:hover { color: var(--oranye); }
+
+    /* Ikon kecil sosmed */
+    .sosmed-link .icon {
+      width: 32px; height: 32px;
+      background: var(--krem);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--oranye);
+      font-size: 0.85rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--coklat-tua); color: rgba(255,255,255,0.85); padding: 50px 0 20px; }
+    footer .brand-name { color: var(--putih); }
+    footer .brand-sub  { color: rgba(255,255,255,0.6); }
+    footer .logo-icon  { color: var(--oranye-muda); }
+    footer h5 { color: var(--oranye-muda); font-weight: 700; margin-bottom: 16px; font-size: 1rem; }
+    footer a  { color: rgba(255,255,255,0.75); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9rem; transition: color var(--transisi); }
+    footer a:hover { color: var(--oranye-muda); }
+    .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); margin-right: 8px; margin-bottom: 0; transition: background var(--transisi); }
+    .social-icons a:hover { background: var(--oranye); border-color: var(--oranye); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 16px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); }

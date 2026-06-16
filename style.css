@@ -1,0 +1,195 @@
+
+    /* ===== VARIABEL GLOBAL (sama dengan index.html) ===== */
+    :root {
+      --coklat-tua:  #3E1F00;
+      --oranye:      #E07B2A;
+      --oranye-muda: #F5A623;
+      --krem:        #FDF6EC;
+      --teks-gelap:  #1A1A1A;
+      --teks-abu:    #666666;
+      --putih:       #FFFFFF;
+      --font-judul:  'Playfair Display', serif;
+      --font-isi:    'Nunito', sans-serif;
+      --shadow-card: 0 4px 20px rgba(0,0,0,0.10);
+      --radius:      12px;
+      --transisi:    0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-isi); color: var(--teks-gelap); }
+
+    /* ===== NAVBAR (sama dengan beranda) ===== */
+    .navbar {
+      background: var(--putih);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      padding: 14px 0;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .navbar-brand .brand-name { font-family: var(--font-judul); font-size: 1.4rem; color: var(--coklat-tua); font-weight: 800; }
+    .navbar-brand .brand-sub  { font-size: 0.7rem; color: var(--teks-abu); display: block; line-height: 1; }
+    .logo-icon { font-size: 1.8rem; color: var(--oranye); margin-right: 8px; }
+    .nav-link { color: var(--teks-gelap) !important; font-weight: 600; font-size: 0.95rem; padding: 6px 16px !important; border-radius: 6px; transition: color var(--transisi); }
+    .nav-link:hover, .nav-link.active { color: var(--oranye) !important; }
+    .nav-link.active { border-bottom: 2px solid var(--oranye); }
+
+    /* ===== HEADER HALAMAN MAKANAN ===== */
+    .page-header {
+      background: var(--krem);
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: var(--font-judul);
+      font-size: 2.4rem;
+      color: var(--teks-gelap);
+    }
+    /* Garis oranye di bawah judul */
+    .page-header h1::after {
+      content: '';
+      display: block;
+      width: 60px; height: 3px;
+      background: var(--oranye);
+      margin: 10px auto 0;
+    }
+
+    /* ===== AREA KONTEN UTAMA ===== */
+    .main-content { padding: 40px 0 60px; }
+
+    /* ===== SIDEBAR FILTER ===== */
+    /* Filter tampil di kiri pada desktop, atas pada mobile */
+    .filter-card {
+      background: var(--putih);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+      position: sticky; /* Filter menempel saat scroll */
+      top: 80px;        /* Jarak dari atas (setelah navbar) */
+    }
+
+    .filter-card h5 {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--teks-gelap);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--krem); /* Garis bawah judul filter */
+    }
+
+    /* Label kategori filter */
+    .filter-label {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--oranye);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    /* Checkbox & label kategori */
+    .form-check { margin-bottom: 8px; }
+    .form-check-input:checked {
+      background-color: var(--oranye); /* Checkbox diisi warna oranye saat dipilih */
+      border-color: var(--oranye);
+    }
+    .form-check-label { font-size: 0.9rem; cursor: pointer; }
+
+    /* ===== RANGE SLIDER HARGA ===== */
+    /* input[type=range] = slider bawaan HTML */
+    input[type="range"] {
+      accent-color: var(--oranye); /* Warna track slider */
+      width: 100%;
+    }
+
+    .harga-display {
+      font-size: 0.85rem;
+      color: var(--teks-abu);
+      margin-top: 6px;
+    }
+
+    /* Tombol Reset Filter */
+    .btn-reset {
+      background: none;
+      border: 1px solid var(--oranye);
+      color: var(--oranye);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 16px;
+      transition: background var(--transisi), color var(--transisi);
+    }
+    .btn-reset:hover { background: var(--oranye); color: var(--putih); }
+
+    /* ===== KARTU MAKANAN (GRID PRODUK) ===== */
+    .card-produk {
+      border: none;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform var(--transisi), box-shadow var(--transisi);
+      cursor: pointer;
+    }
+    .card-produk:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Gambar kartu */
+    .card-produk img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card-produk:hover img { transform: scale(1.07); }
+    .card-produk .img-wrap { overflow: hidden; }
+
+    /* Badge kategori di atas gambar */
+    /* position: relative pada wrapper dan absolute pada badge */
+    .card-badge {
+      position: absolute;  /* Mengambang di atas gambar */
+      top: 10px; left: 10px;
+      background: var(--oranye);
+      color: var(--putih);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      text-transform: uppercase;
+    }
+
+    .card-produk .card-body { padding: 16px; }
+    .card-produk .nama-makanan { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .card-produk .deskripsi { font-size: 0.83rem; color: var(--teks-abu); margin-bottom: 10px; }
+    .card-produk .harga {
+      color: var(--oranye);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* ===== TEKS "TIDAK ADA MAKANAN" ===== */
+    /* Muncul jika semua produk tersaring (tidak ada yang cocok filter) */
+    #noResult {
+      display: none;    /* Awalnya tersembunyi */
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--teks-abu);
+    }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--coklat-tua); color: rgba(255,255,255,0.85); padding: 50px 0 20px; }
+    footer .brand-name { color: var(--putih); }
+    footer .brand-sub  { color: rgba(255,255,255,0.6); }
+    footer .logo-icon  { color: var(--oranye-muda); }
+    footer h5 { color: var(--oranye-muda); font-weight: 700; margin-bottom: 16px; font-size: 1rem; }
+    footer a { color: rgba(255,255,255,0.75); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9rem; transition: color var(--transisi); }
+    footer a:hover { color: var(--oranye-muda); }
+    .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); margin-right: 8px; margin-bottom: 0; transition: background var(--transisi); }
+    .social-icons a:hover { background: var(--oranye); border-color: var(--oranye); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 16px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+    /* ===== RESPONSIF MOBILE ===== */
+    @media (max-width: 768px) {
+      .filter-card { position: static; margin-bottom: 24px; } /* Tidak sticky di mobile */
+    }

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!-- 
+  DOCTYPE: Memberitahu browser bahwa ini adalah HTML5
+  Tanpa ini, browser mungkin masuk "quirks mode" dan tampilan bisa rusak
+-->
+<html lang="id">
+<!-- lang="id" = bahasa halaman adalah Indonesia, penting untuk SEO & aksesibilitas -->
+
+<head>
+  <meta charset="UTF-8">
+  <!-- charset UTF-8: Mendukung semua karakter termasuk huruf khusus Indonesia -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- viewport: Membuat halaman responsive di HP. 
+       width=device-width = lebar mengikuti layar perangkat
+       initial-scale=1.0  = zoom awal 100% -->
+
+  <title>Kuliner Aceh - Cita Rasa Serambi Mekkah</title>
+  <!-- title: Judul di tab browser dan hasil pencarian Google -->
+
+  <!-- ===== BOOTSTRAP 5 CSS ===== -->
+  <!-- Bootstrap: Framework CSS siap pakai untuk layout grid, tombol, navbar, dll -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- ===== FONT AWESOME (IKON) ===== -->
+  <!-- Font Awesome: Library ikon populer (Instagram, phone, email, dll) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- ===== GOOGLE FONTS ===== -->
+  <!-- Google Fonts: Mengimpor font kustom dari internet -->
+  <!-- Playfair Display = font serif elegan untuk judul -->
+  <!-- Nunito = font sans-serif bersih untuk isi teks -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css">
+  
+</head>
+
+<body>
+
+  <!-- ===================================================
+       NAVBAR
+       Bootstrap class: navbar, navbar-expand-lg (collapse di mobile),
+       navbar-light (teks gelap), sticky-top (menempel atas saat scroll)
+  =================================================== -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container"> <!-- container = batasi lebar konten, pusatkan -->
+
+      <!-- LOGO -->
+      <!-- href="index.html" = klik logo kembali ke beranda -->
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <!-- d-flex align-items-center = Bootstrap flexbox untuk sejajarkan ikon & teks -->
+        <i class="fas fa-mosque logo-icon"></i> <!-- Ikon masjid dari Font Awesome -->
+        <div>
+          <span class="brand-name">Kuliner Aceh</span>
+          <span class="brand-sub">Cita Rasa Serambi Mekkah</span>
+        </div>
+      </a>
+
+      <!-- TOMBOL HAMBURGER (muncul di mobile) -->
+      <!-- data-bs-toggle & data-bs-target = JavaScript Bootstrap untuk buka/tutup menu -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- MENU NAVIGASI -->
+      <!-- collapse navbar-collapse = tersembunyi di mobile, muncul saat hamburger diklik -->
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <!-- justify-content-end = menu rata kanan -->
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+            <!-- class active = menandai halaman yang sedang dibuka -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="makanan.html">Makanan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tentang.html">Tentang Aceh</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="kontak.html">Kontak</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- /NAVBAR -->
+
+
+  <!-- ===================================================
+       HERO SECTION
+       Section utama halaman dengan teks dan gambar besar
+  =================================================== -->
+  <section class="hero">
+    <div class="container">
+      <!-- Bootstrap Grid: row = baris, col = kolom -->
+      <!-- align-items-center = sejajarkan kolom secara vertikal di tengah -->
+      <div class="row align-items-center">
+
+        <!-- Kolom teks: 12 kolom di mobile, 6 kolom di lg ke atas -->
+        <div class="col-12 col-lg-6">
+          <h1 class="hero-title">
+            Nikmati<br>
+            <span>Makanan Khas Aceh</span>
+            <!-- <br> = pindah baris di dalam judul -->
+          </h1>
+          <p class="hero-desc">
+            Cita rasa rempah yang kuat, kaya akan budaya dan tradisi dari Tanah Rencong.
+          </p>
+          <!-- Tombol menuju halaman makanan -->
+          <a href="makanan.html" class="btn-hero">
+            Jelajahi Makanan <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Kolom gambar: tersembunyi di mobile kecil, muncul di lg -->
+        <div class="col-12 col-lg-6 text-center mt-4 mt-lg-0">
+          <!-- mt-4 = margin-top di mobile, mt-lg-0 = tidak ada margin-top di desktop -->
+
+          <!-- 
+            CATATAN: Untuk gambar asli, ganti src="" dengan path foto makanan Anda.
+            Contoh: src="assets/mie-aceh.jpg"
+            Saat ini menggunakan placeholder dari placehold.co
+          -->
+          <img
+            src="mi_aceh.jpeg"
+            alt="Mie Aceh - Makanan Khas Aceh"
+            class="hero-img"
+          >
+          <!-- alt = teks deskripsi gambar, penting untuk aksesibilitas & SEO -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /HERO -->
+
+
+  <!-- ===================================================
+       SECTION MAKANAN KHAS ACEH
+       Menampilkan 4 kartu makanan populer
+  =================================================== -->
+  <section class="section-makanan" id="makanan">
+    <div class="container">
+
+      <!-- Judul section -->
+      <h2 class="section-title">Makanan Khas Aceh</h2>
+      <p class="section-sub">Beragam hidangan lezat yang menggugah selera dan wajib kamu coba.</p>
+
+      <!-- Grid 4 kolom kartu -->
+      <!-- row-cols-* menentukan berapa kartu per baris -->
+      <!-- g-4 = gap/jarak antar kartu (Bootstrap spacing) -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+
+        <!-- KARTU 1: MIE ACEH -->
+        <div class="col">
+          <!-- h-100 = tinggi 100% agar semua kartu sama tinggi dalam satu baris -->
+          <div class="card card-makanan h-100">
+            <div class="card-img-wrap">
+              <img src="mi_aceh.jpeg"
+                   alt="Mie Aceh">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Mie Aceh</h5>
+              <p class="card-text">
+                Mie kuning tebal dengan bumbu rempah khas Aceh. Tersedia dalam varian goreng atau kuah.
+              </p>
+              <a href="makanan.html" class="card-link">
+                Lihat Selengkapnya <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTU 2: RENDANG ACEH -->
+        <div class="col">
+          <div class="card card-makanan h-100">
+            <div class="card-img-wrap">
+              <img src="makanan2.jpg"
+                   alt="Rendang Aceh">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Rendang Aceh</h5>
+              <p class="card-text">
+                Daging dimasak dengan bumbu rempah yang meresap sempurna, pedas dan gurih khas Aceh.
+              </p>
+              <a href="makanan.html" class="card-link">
+                Lihat Selengkapnya <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTU 3: NASI GURIH -->
+        <div class="col">
+          <div class="card card-makanan h-100">
+            <div class="card-img-wrap">
+              <img src="makanan3.jpg"
+                   alt="Nasi Gurih Aceh">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Nasi Gurih Aceh</h5>
+              <p class="card-text">
+                Nasi gurih dimasak dengan santan dan rempah, biasanya disajikan dengan ikan dan sambal.
+              </p>
+              <a href="makanan.html" class="card-link">
+                Lihat Selengkapnya <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KARTU 4: AYAM TANGKAP -->
+        <div class="col">
+          <div class="card card-makanan h-100">
+            <div class="card-img-wrap">
+              <img src="makanan4.jpg"
+                   alt="Ayam Tangkap">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Ayam Tangkap</h5>
+              <p class="card-text">
+                Ayam goreng dengan daun kari dan bumbu khas, harum dan sangat menggoda selera.
+              </p>
+              <a href="makanan.html" class="card-link">
+                Lihat Selengkapnya <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /row kartu -->
+
+    </div>
+  </section>
+  <!-- /SECTION MAKANAN -->
+
+
+  <!-- ===================================================
+       SECTION KEUNGGULAN
+       4 poin kelebihan/nilai jual website
+  =================================================== -->
+  <section class="section-keunggulan">
+    <div class="container">
+      <!-- row justify-content-center = baris dipusatkan -->
+      <div class="row justify-content-center">
+
+        <!-- Masing-masing fitur: 12 kolom di mobile, 3 di tablet, 3 di desktop -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="keunggulan-item">
+            <div class="keunggulan-icon">
+              <i class="fas fa-fire"></i> <!-- Ikon api = rasa autentik -->
+            </div>
+            <div>
+              <h6>Rasa Autentik</h6>
+              <p>Resep turun-temurun dengan bumbu rempah pilihan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="keunggulan-item">
+            <div class="keunggulan-icon">
+              <i class="fas fa-leaf"></i> <!-- Ikon daun = bahan segar -->
+            </div>
+            <div>
+              <h6>Bahan Berkualitas</h6>
+              <p>Menggunakan bahan segar dan rempah terbaik.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="keunggulan-item">
+            <div class="keunggulan-icon">
+              <i class="fas fa-users"></i> <!-- Ikon orang = warisan budaya -->
+            </div>
+            <div>
+              <h6>Warisan Budaya</h6>
+              <p>Setiap makanan membawa cerita dan tradisi Aceh.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="keunggulan-item">
+            <div class="keunggulan-icon">
+              <i class="fas fa-heart"></i> <!-- Ikon hati = dibuat dengan cinta -->
+            </div>
+            <div>
+              <h6>Dibuat dengan Cinta</h6>
+              <p>Disajikan dengan penuh cinta untuk kepuasan Anda.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /SECTION KEUNGGULAN -->
+
+
+  <!-- ===================================================
+       FOOTER
+       Bagian bawah halaman dengan info, menu, dan kontak
+  =================================================== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+
+        <!-- Kolom 1: Brand & Sosial Media -->
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <!-- mb-4 mb-md-0 = margin bawah di mobile, tidak di desktop -->
+          <a class="navbar-brand d-flex align-items-center mb-3 text-decoration-none" href="index.html">
+            <i class="fas fa-mosque logo-icon"></i>
+            <div>
+              <span class="brand-name">Kuliner Aceh</span>
+              <span class="brand-sub">Cita Rasa Serambi Mekkah</span>
+            </div>
+          </a>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); margin-bottom:16px;">
+            Menjelajahi kelezatan makanan khas Aceh yang kaya rempah dan penuh makna.
+          </p>
+          <!-- Ikon Sosial Media -->
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Menu -->
+        <div class="col-6 col-md-4 mb-4 mb-md-0">
+          <h5>Menu</h5>
+          <a href="index.html">Home</a>
+          <a href="makanan.html">Makanan</a>
+          <a href="tentang.html">Tentang Aceh</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+
+        <!-- Kolom 3: Kontak -->
+        <div class="col-6 col-md-4">
+          <h5>Kontak Kami</h5>
+          <!-- d-flex align-items-center = ikon dan teks sejajar horizontal -->
+          <a href="tel:+6281234567890" class="d-flex align-items-center gap-2">
+            <i class="fas fa-phone"></i> +62 812-3456-7890
+          </a>
+          <a href="mailto:info@kullineraceh.id" class="d-flex align-items-center gap-2">
+            <i class="fas fa-envelope"></i> info@kullineraceh.id
+          </a>
+          <a href="#" class="d-flex align-items-center gap-2">
+            <i class="fas fa-map-marker-alt"></i> Banda Aceh, Aceh, Indonesia
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom">
+        &copy; 2024 Kuliner Aceh. All rights reserved.
+        <!-- &copy; = simbol © -->
+      </div>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+
+  <!-- ===================================================
+       BOOTSTRAP JS (JAVASCRIPT)
+       Diletakkan di akhir body agar halaman lebih cepat muat.
+       Berguna untuk: navbar collapse/toggle di mobile,
+       dropdown, modal, dan komponen interaktif Bootstrap lainnya.
+  =================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ===================================================
+    // JAVASCRIPT: ACTIVE LINK NAVBAR
+    // Menandai link navbar yang sesuai halaman aktif
+    // ===================================================
+
+    // Ambil semua elemen dengan class "nav-link"
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Ambil nama file URL saat ini (misal: "index.html")
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    // Loop setiap link navbar
+    navLinks.forEach(link => {
+      // Ambil nama file dari href link
+      const linkPage = link.getAttribute('href');
+
+      // Jika link menuju halaman yang sedang dibuka, tambahkan class "active"
+      if (linkPage === currentPage) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active'); // Hapus active dari yang lain
+      }
+    });
+
+
+    // ===================================================
+    // JAVASCRIPT: SCROLL ANIMATION (FADE IN)
+    // Elemen muncul dengan efek fade saat di-scroll ke sana
+    // ===================================================
+
+    // Intersection Observer: memantau kapan elemen masuk area pandang
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Jika elemen terlihat di layar
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';           // Muncul
+          entry.target.style.transform = 'translateY(0)'; // Kembali ke posisi normal
+        }
+      });
+    }, { threshold: 0.15 }); // Aktif ketika 15% elemen terlihat
+
+    // Pilih semua kartu dan item yang akan dianimasikan
+    document.querySelectorAll('.card-makanan, .keunggulan-item').forEach(el => {
+      el.style.opacity = '0';                    // Awalnya tidak terlihat
+      el.style.transform = 'translateY(30px)';  // Awalnya sedikit di bawah
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el); // Mulai memantau elemen ini
+    });
+  </script>
+
+</body>
+</html>

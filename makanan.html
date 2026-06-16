@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Makanan - Kuliner Aceh</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR (sama struktur dengan index.html) -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <i class="fas fa-mosque logo-icon"></i>
+        <div>
+          <span class="brand-name">Kuliner Aceh</span>
+          <span class="brand-sub">Cita Rasa Serambi Mekkah</span>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="makanan.html">Makanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Aceh</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER HALAMAN -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Semua Makanan</h1>
+      <p class="text-muted mt-2">Temukan hidangan khas Aceh favoritmu</p>
+    </div>
+  </div>
+
+  <!-- KONTEN UTAMA: SIDEBAR FILTER + GRID PRODUK -->
+  <div class="main-content">
+    <div class="container">
+      <!-- row: kiri = filter, kanan = produk -->
+      <div class="row g-4">
+
+        <!-- ===== SIDEBAR FILTER (3 dari 12 kolom di desktop) ===== -->
+        <div class="col-12 col-lg-3">
+          <div class="filter-card">
+            <h5><i class="fas fa-filter me-2"></i>Filter</h5>
+
+            <!-- Filter Kategori -->
+            <div class="filter-label">Kategori</div>
+            <!-- Setiap checkbox punya data-kategori yang sama dengan card produk -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="makanan-utama"
+                     id="cat1" onchange="filterProduk()">
+              <!-- onchange: jalankan fungsi filterProduk() tiap kali checkbox berubah -->
+              <label class="form-check-label" for="cat1">Makanan Utama</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="lauk"
+                     id="cat2" onchange="filterProduk()">
+              <label class="form-check-label" for="cat2">Lauk</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="minuman"
+                     id="cat3" onchange="filterProduk()">
+              <label class="form-check-label" for="cat3">Minuman</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="cemilan"
+                     id="cat4" onchange="filterProduk()">
+              <label class="form-check-label" for="cat4">Cemilan</label>
+            </div>
+
+            <!-- Garis pemisah Bootstrap -->
+            <hr class="my-3">
+
+            <!-- Filter Harga dengan Range Slider -->
+            <div class="filter-label">Harga</div>
+            <div class="d-flex justify-content-between">
+              <small>Rp 0</small>
+              <small>Rp 100.000</small>
+            </div>
+            <!-- 
+              input type="range": slider HTML bawaan
+              min/max: batas nilai
+              value: nilai awal
+              oninput: jalankan JS tiap slider digeser
+            -->
+            <input type="range" id="rangeHarga"
+                   min="0" max="100000" step="5000" value="100000"
+                   oninput="updateHarga(this.value); filterProduk()">
+            <p class="harga-display">
+              Maks: <strong id="hargaLabel">Rp 100.000</strong>
+            </p>
+
+            <!-- Tombol Reset -->
+            <button class="btn-reset" onclick="resetFilter()">
+              <i class="fas fa-rotate-left me-1"></i> Reset Filter
+            </button>
+          </div>
+        </div>
+        <!-- /SIDEBAR FILTER -->
+
+        <!-- ===== GRID PRODUK (9 dari 12 kolom di desktop) ===== -->
+        <div class="col-12 col-lg-9">
+
+          <!-- Baris grid produk: 1 kolom di mobile, 2 di tablet, 3 di desktop -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4" id="gridProduk">
+
+            <!-- 
+              Setiap kartu produk punya:
+              - data-kategori: untuk filter kategori
+              - data-harga: untuk filter harga (angka tanpa titik)
+              class="produk-item" dipakai JavaScript untuk memilih semua produk
+            -->
+
+            <!-- PRODUK 1 -->
+            <div class="col produk-item" data-kategori="makanan-utama" data-harga="25000">
+              <div class="card card-produk h-100">
+                <!-- position-relative agar badge bisa diposisikan absolute di dalam -->
+                <div class="img-wrap position-relative">
+                  <img src="mi_aceh.jpeg" alt="Mie Aceh">
+                  <span class="card-badge">Makanan Utama</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Mie Aceh</p>
+                  <p class="deskripsi">Mie kuning tebal bumbu rempah khas Aceh, varian goreng atau kuah.</p>
+                  <p class="harga">Rp 25.000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUK 2 -->
+            <div class="col produk-item" data-kategori="lauk" data-harga="45000">
+              <div class="card card-produk h-100">
+                <div class="img-wrap position-relative">
+                  <img src="makanan2.jpg" alt="Rendang Aceh">
+                  <span class="card-badge">Lauk</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Rendang Aceh</p>
+                  <p class="deskripsi">Daging sapi masak rempah meresap sempurna, pedas dan gurih.</p>
+                  <p class="harga">Rp 45.000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUK 3 -->
+            <div class="col produk-item" data-kategori="makanan-utama" data-harga="20000">
+              <div class="card card-produk h-100">
+                <div class="img-wrap position-relative">
+                  <img src="makanan3.jpg" alt="Nasi Gurih">
+                  <span class="card-badge">Makanan Utama</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Nasi Gurih Aceh</p>
+                  <p class="deskripsi">Nasi santan rempah, disajikan dengan ikan dan sambal khas.</p>
+                  <p class="harga">Rp 20.000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUK 4 -->
+            <div class="col produk-item" data-kategori="lauk" data-harga="35000">
+              <div class="card card-produk h-100">
+                <div class="img-wrap position-relative">
+                  <img src="makanan4.jpg" alt="Ayam Tangkap">
+                  <span class="card-badge">Lauk</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Ayam Tangkap</p>
+                  <p class="deskripsi">Ayam goreng daun kari, harum dan menggoda selera.</p>
+                  <p class="harga">Rp 35.000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUK 5 -->
+            <div class="col produk-item" data-kategori="minuman" data-harga="10000">
+              <div class="card card-produk h-100">
+                <div class="img-wrap position-relative">
+                  <img src="kopi_aceh.jpg" alt="Kopi Aceh">
+                  <span class="card-badge">Minuman</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Kopi Sanger</p>
+                  <p class="deskripsi">Kopi khas Aceh dicampur susu kental manis, kuat dan nikmat.</p>
+                  <p class="harga">Rp 10.000</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUK 6 -->
+            <div class="col produk-item" data-kategori="cemilan" data-harga="15000">
+              <div class="card card-produk h-100">
+                <div class="img-wrap position-relative">
+                  <img src="makanan5.jpeg" alt="Kue Timphan">
+                  <span class="card-badge">Cemilan</span>
+                </div>
+                <div class="card-body">
+                  <p class="nama-makanan">Kue Timphan</p>
+                  <p class="deskripsi">Kue tradisional Aceh dari tepung ketan berisi srikaya.</p>
+                  <p class="harga">Rp 15.000</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /Grid Produk -->
+
+          <!-- Pesan jika tidak ada produk yang cocok filter -->
+          <div id="noResult">
+            <i class="fas fa-search fa-3x mb-3" style="color:var(--oranye); opacity:0.4;"></i>
+            <h5>Tidak ada makanan ditemukan</h5>
+            <p>Coba ubah filter atau reset ke semua kategori.</p>
+          </div>
+
+        </div>
+        <!-- /Grid Produk Column -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <a class="navbar-brand d-flex align-items-center mb-3 text-decoration-none" href="index.html">
+            <i class="fas fa-mosque logo-icon"></i>
+            <div>
+              <span class="brand-name">Kuliner Aceh</span>
+              <span class="brand-sub">Cita Rasa Serambi Mekkah</span>
+            </div>
+          </a>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); margin-bottom:16px;">Menjelajahi kelezatan makanan khas Aceh yang kaya rempah dan penuh makna.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 mb-4 mb-md-0">
+          <h5>Menu</h5>
+          <a href="index.html">Home</a>
+          <a href="makanan.html">Makanan</a>
+          <a href="tentang.html">Tentang Aceh</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+        <div class="col-6 col-md-4">
+          <h5>Kontak Kami</h5>
+          <a href="#" class="d-flex align-items-center gap-2"><i class="fas fa-phone"></i> +62 812-3456-7890</a>
+          <a href="#" class="d-flex align-items-center gap-2"><i class="fas fa-envelope"></i> info@kullineraceh.id</a>
+          <a href="#" class="d-flex align-items-center gap-2"><i class="fas fa-map-marker-alt"></i> Banda Aceh, Indonesia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2024 Kuliner Aceh. All rights reserved.</div>
+    </div>
+  </footer>
+<!--Bootstrap Bundle JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!--Custom JS Link-->
+  <script src="script.js"></script>
+
+</body>
+</html>

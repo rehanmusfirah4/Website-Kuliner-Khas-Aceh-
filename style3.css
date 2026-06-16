@@ -1,0 +1,124 @@
+
+    /* ===== VARIABEL GLOBAL ===== */
+    :root {
+      --coklat-tua:  #3E1F00;
+      --oranye:      #E07B2A;
+      --oranye-muda: #F5A623;
+      --krem:        #FDF6EC;
+      --teks-gelap:  #1A1A1A;
+      --teks-abu:    #666666;
+      --putih:       #FFFFFF;
+      --font-judul:  'Playfair Display', serif;
+      --font-isi:    'Nunito', sans-serif;
+      --shadow-card: 0 4px 20px rgba(0,0,0,0.10);
+      --radius:      12px;
+      --transisi:    0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-isi); color: var(--teks-gelap); }
+
+    /* ===== NAVBAR ===== */
+    .navbar { background: var(--putih); box-shadow: 0 2px 15px rgba(0,0,0,0.08); padding: 14px 0; position: sticky; top: 0; z-index: 1000; }
+    .navbar-brand .brand-name { font-family: var(--font-judul); font-size: 1.4rem; color: var(--coklat-tua); font-weight: 800; }
+    .navbar-brand .brand-sub  { font-size: 0.7rem; color: var(--teks-abu); display: block; line-height: 1; }
+    .logo-icon { font-size: 1.8rem; color: var(--oranye); margin-right: 8px; }
+    .nav-link { color: var(--teks-gelap) !important; font-weight: 600; font-size: 0.95rem; padding: 6px 16px !important; transition: color var(--transisi); }
+    .nav-link:hover, .nav-link.active { color: var(--oranye) !important; }
+    .nav-link.active { border-bottom: 2px solid var(--oranye); }
+
+    /* ===== HERO TENTANG ACEH ===== */
+    /* Banner atas halaman dengan latar krem dan teks deskripsi singkat */
+    .page-hero {
+      background: var(--krem);
+      padding: 60px 0;
+    }
+    .page-hero h1 {
+      font-family: var(--font-judul);
+      font-size: clamp(2rem, 4vw, 3rem); /* Ukuran responsif */
+      color: var(--teks-gelap);
+    }
+    .page-hero h1 span { color: var(--oranye); } /* Kata oranye dalam judul */
+    .page-hero p { color: var(--teks-abu); font-size: 1rem; max-width: 550px; line-height: 1.8; }
+    .page-hero img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ===== SECTION INFORMASI UTAMA ===== */
+    .section-info { padding: 70px 0; }
+
+    /* Judul tiap section konten */
+    .info-title {
+      font-family: var(--font-judul);
+      font-size: 1.9rem;
+      color: var(--teks-gelap);
+      margin-bottom: 16px;
+    }
+    .info-title span { color: var(--oranye); } /* Aksen oranye dalam judul */
+
+    /* Paragraf isi */
+    .info-text {
+      color: var(--teks-abu);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    /* Gambar section info */
+    .info-img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      object-fit: cover;
+      height: 280px;
+    }
+
+    /* ===== 3 KARTU BAWAH (Budaya, Rempah, Tradisi Kuliner) ===== */
+    .section-cards { padding: 0 0 70px; }
+
+    /* Kartu sub-topik */
+    .sub-card {
+      background: var(--putih);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 28px 22px;
+      text-align: center;
+      transition: transform var(--transisi), box-shadow var(--transisi);
+      height: 100%;
+    }
+    .sub-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+    }
+
+    /* Gambar kecil di dalam kartu */
+    .sub-card img {
+      width: 100%; height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    /* Judul kartu */
+    .sub-card h5 {
+      font-weight: 700;
+      color: var(--oranye);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    /* Deskripsi kartu */
+    .sub-card p { font-size: 0.88rem; color: var(--teks-abu); line-height: 1.6; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--coklat-tua); color: rgba(255,255,255,0.85); padding: 50px 0 20px; }
+    footer .brand-name { color: var(--putih); }
+    footer .brand-sub  { color: rgba(255,255,255,0.6); }
+    footer .logo-icon  { color: var(--oranye-muda); }
+    footer h5 { color: var(--oranye-muda); font-weight: 700; margin-bottom: 16px; font-size: 1rem; }
+    footer a  { color: rgba(255,255,255,0.75); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9rem; transition: color var(--transisi); }
+    footer a:hover { color: var(--oranye-muda); }
+    .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); margin-right: 8px; margin-bottom: 0; transition: background var(--transisi); }
+    .social-icons a:hover { background: var(--oranye); border-color: var(--oranye); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 16px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); }

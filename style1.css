@@ -1,0 +1,410 @@
+
+    /* ===================================================
+       CSS VARIABLES (VARIABEL WARNA & FONT GLOBAL)
+       Dengan variabel, kita bisa ganti warna dari satu tempat
+       dan semua elemen yang memakai variabel itu ikut berubah
+    =================================================== */
+    :root {
+      --coklat-tua:  #3E1F00;   /* Warna coklat gelap untuk footer & aksen */
+      --oranye:      #E07B2A;   /* Warna oranye utama (brand color) */
+      --oranye-muda: #F5A623;   /* Oranye lebih terang untuk hover */
+      --krem:        #FDF6EC;   /* Latar belakang krem/hangat */
+      --teks-gelap:  #1A1A1A;   /* Warna teks utama hampir hitam */
+      --teks-abu:    #666666;   /* Warna teks sekunder abu-abu */
+      --putih:       #FFFFFF;
+      --font-judul:  'Playfair Display', serif;
+      --font-isi:    'Nunito', sans-serif;
+      --shadow-card: 0 4px 20px rgba(0,0,0,0.10); /* Bayangan kartu */
+      --radius:      12px;      /* Sudut membulat kartu */
+      --transisi:    0.3s ease; /* Kecepatan animasi hover */
+    }
+
+    /* ===================================================
+       RESET & BASE STYLE
+       Mengatur dasar tampilan seluruh halaman
+    =================================================== */
+    * {
+      box-sizing: border-box; /* padding & border masuk dalam ukuran elemen */
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-isi);   /* Font default semua teks */
+      color: var(--teks-gelap);
+      background-color: var(--putih);
+      overflow-x: hidden;             /* Sembunyikan scroll horizontal */
+    }
+
+    /* ===================================================
+       NAVBAR (NAVIGASI ATAS)
+    =================================================== */
+    .navbar {
+      background: var(--putih);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08); /* Bayangan halus agar terlihat melayang */
+      padding: 14px 0;
+      position: sticky; /* Navbar menempel di atas saat di-scroll */
+      top: 0;
+      z-index: 1000;    /* Pastikan navbar di atas semua elemen lain */
+    }
+
+    /* Logo teks "Kuliner Aceh" */
+    .navbar-brand .brand-name {
+      font-family: var(--font-judul);
+      font-size: 1.4rem;
+      color: var(--coklat-tua);
+      font-weight: 800;
+    }
+
+    /* Subtitle di bawah logo */
+    .navbar-brand .brand-sub {
+      font-size: 0.7rem;
+      color: var(--teks-abu);
+      display: block;
+      line-height: 1;
+    }
+
+    /* Icon masjid di sebelah teks logo */
+    .logo-icon {
+      font-size: 1.8rem;
+      color: var(--oranye);
+      margin-right: 8px;
+    }
+
+    /* Link menu navigasi */
+    .nav-link {
+      color: var(--teks-gelap) !important; /* !important menimpa style Bootstrap */
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 6px 16px !important;
+      border-radius: 6px;
+      transition: color var(--transisi), background var(--transisi);
+    }
+
+    /* Efek hover dan menu aktif */
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--oranye) !important;
+    }
+
+    /* Garis bawah menu aktif */
+    .nav-link.active {
+      border-bottom: 2px solid var(--oranye);
+    }
+
+    /* ===================================================
+       HERO SECTION (BANNER UTAMA)
+       Bagian atas halaman dengan gambar besar dan teks utama
+    =================================================== */
+    .hero {
+      background-color: var(--krem);  /* Warna latar belakang krem */
+      min-height: 85vh;               /* Tinggi minimal 85% tinggi layar */
+      display: flex;
+      align-items: center;            /* Konten di tengah secara vertikal */
+      padding: 60px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Judul besar di hero */
+    .hero-title {
+      font-family: var(--font-judul);
+      font-size: clamp(2.2rem, 5vw, 3.8rem); /* Ukuran font responsif */
+      line-height: 1.15;
+      color: var(--teks-gelap);
+    }
+
+    /* Kata yang diwarnai oranye dalam judul */
+    .hero-title span {
+      color: var(--oranye);
+    }
+
+    /* Paragraf deskripsi di bawah judul */
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--teks-abu);
+      margin: 16px 0 28px;
+      max-width: 420px;
+      line-height: 1.7;
+    }
+
+    /* Tombol utama "Jelajahi Makanan" */
+    .btn-hero {
+      background: var(--oranye);
+      color: var(--putih);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;          /* Tombol berbentuk pill */
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--transisi), transform var(--transisi);
+    }
+
+    /* Efek hover tombol */
+    .btn-hero:hover {
+      background: var(--coklat-tua);
+      color: var(--putih);
+      transform: translateY(-2px); /* Tombol naik sedikit */
+    }
+
+    /* Gambar makanan di hero */
+    .hero-img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 50%;           /* Gambar berbentuk lingkaran */
+      box-shadow: 0 20px 60px rgba(224,123,42,0.3); /* Bayangan berwarna oranye */
+      animation: float 4s ease-in-out infinite; /* Animasi mengambang */
+    }
+
+    /* ===================================================
+       ANIMASI FLOAT
+       Gambar hero bergerak naik-turun secara halus
+    =================================================== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }    /* Posisi normal */
+      50%       { transform: translateY(-15px); }  /* Naik 15px di tengah siklus */
+    }
+
+    /* ===================================================
+       SECTION MAKANAN KHAS (KARTU PRODUK)
+    =================================================== */
+    .section-makanan {
+      padding: 80px 0;
+      background: var(--putih);
+    }
+
+    /* Judul section */
+    .section-title {
+      font-family: var(--font-judul);
+      font-size: 2.2rem;
+      color: var(--teks-gelap);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* Garis dekorasi di bawah judul */
+    .section-title::after {
+      content: '';              /* Pseudo-element, tidak ada teks */
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--oranye);
+      margin: 10px auto 0;      /* Pusatkan garis */
+    }
+
+    /* Sub-judul di bawah section title */
+    .section-sub {
+      text-align: center;
+      color: var(--teks-abu);
+      margin-bottom: 44px;
+      font-size: 1rem;
+    }
+
+    /* ===================================================
+       KARTU MAKANAN
+    =================================================== */
+    .card-makanan {
+      border: none;                        /* Hapus border default Bootstrap */
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;                    /* Gambar tidak keluar dari kartu */
+      transition: transform var(--transisi), box-shadow var(--transisi);
+      cursor: pointer;
+      height: 100%;                        /* Kartu sama tinggi dalam satu baris */
+    }
+
+    /* Efek hover kartu: naik dan bayangan lebih besar */
+    .card-makanan:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Wrapper gambar kartu */
+    .card-img-wrap {
+      overflow: hidden;
+      height: 200px;
+    }
+
+    /* Gambar di dalam kartu */
+    .card-makanan img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;         /* Gambar mengisi area tanpa distorsi */
+      transition: transform 0.5s ease;
+    }
+
+    /* Zoom gambar saat kartu di-hover */
+    .card-makanan:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Body kartu (teks) */
+    .card-makanan .card-body {
+      padding: 18px;
+    }
+
+    /* Nama makanan (judul kartu) */
+    .card-makanan .card-title {
+      color: var(--oranye);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    /* Deskripsi singkat */
+    .card-makanan .card-text {
+      color: var(--teks-abu);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* Link "Lihat Selengkapnya" */
+    .card-makanan .card-link {
+      color: var(--oranye);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 12px;
+      transition: gap var(--transisi);
+    }
+
+    /* Arrow bergeser ke kanan saat hover */
+    .card-makanan .card-link:hover {
+      gap: 8px;
+    }
+
+    /* ===================================================
+       SECTION KEUNGGULAN (4 FITUR IKON)
+    =================================================== */
+    .section-keunggulan {
+      background: var(--krem);
+      padding: 60px 0;
+    }
+
+    /* Tiap item fitur */
+    .keunggulan-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 0 12px;
+    }
+
+    /* Kontainer ikon bulat oranye */
+    .keunggulan-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;              /* Jaga ukuran agar tidak menyusut */
+      background: var(--oranye);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--putih);
+      font-size: 1.4rem;
+    }
+
+    .keunggulan-item h6 {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .keunggulan-item p {
+      font-size: 0.85rem;
+      color: var(--teks-abu);
+      margin: 0;
+    }
+
+    /* Garis pembatas vertikal antar item (kecuali item terakhir) */
+    .keunggulan-item:not(:last-child) {
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ===================================================
+       FOOTER
+    =================================================== */
+    footer {
+      background: var(--coklat-tua);
+      color: rgba(255,255,255,0.85);
+      padding: 50px 0 20px;
+    }
+
+    footer .brand-name { color: var(--putih); }
+    footer .brand-sub  { color: rgba(255,255,255,0.6); }
+    footer .logo-icon  { color: var(--oranye-muda); }
+
+    /* Judul kolom footer */
+    footer h5 {
+      color: var(--oranye-muda);
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    /* Link footer */
+    footer a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      transition: color var(--transisi);
+    }
+
+    footer a:hover { color: var(--oranye-muda); }
+
+    /* Ikon sosial media footer */
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-right: 8px;
+      margin-bottom: 0;
+      transition: background var(--transisi), border-color var(--transisi);
+    }
+
+    .social-icons a:hover {
+      background: var(--oranye);
+      border-color: var(--oranye);
+    }
+
+    /* Garis pemisah dan teks copyright */
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 30px;
+      padding-top: 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===================================================
+       RESPONSIF: MOBILE
+       Media query mengubah tampilan di layar kecil (< 768px)
+    =================================================== */
+    @media (max-width: 768px) {
+      /* Teks hero lebih kecil */
+      .hero-title { font-size: 2rem; }
+
+      /* Gambar hero tidak terlalu besar */
+      .hero-img { max-width: 300px; margin: 30px auto 0; display: block; }
+
+      /* Padding section dikurangi */
+      .section-makanan { padding: 50px 0; }
+
+      /* Keunggulan tidak pakai border kanan */
+      .keunggulan-item { border-right: none !important; margin-bottom: 24px; }
+
+      /* Kartu tidak sama tinggi di mobile */
+      .card-makanan { height: auto; }
+    }
